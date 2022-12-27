@@ -1,0 +1,40 @@
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+        int len = digits.length-1;
+        int arr[] = new int[len];
+        int count = 0;
+        if (digits[len] < 9) {
+            arr = digits.clone();
+            arr[len] +=1;
+        }
+        else {
+            for (int i = len; i >=0; i--) {
+               if (digits[i] == 9) {
+                   count++;
+               }
+            }
+            if (len+1 == count) {
+                arr = new int[len+2];
+                arr[0] = 1; 
+            }
+            else {
+                arr = digits.clone();
+                boolean discont = false;
+                for (int i = len; i > 0; i--) {
+                    if((digits[i] == 9 || digits[i] == 10) && !discont) {
+                        arr[i] = 0;
+                        arr[i-1] +=1;
+                    }
+                    else {
+                        discont = true;
+                    }
+                }
+            }
+            
+        }
+        return arr;
+    }
+}
+
+
